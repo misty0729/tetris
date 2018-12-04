@@ -1,23 +1,71 @@
+import os
 import sys
-if len(sys.argv) < 3:
-    print("filename: in & out")
+
+if len(sys.argv) < 2:
+    print("filename: out")
     sys.exit(0)
 
-filename = sys.argv[1]
-f = open(filename, encoding="utf-8")
+# find asm
+ori_files = os.listdir(".")
+files = []
+for name in ori_files:
+    if os.path.splitext(name)[-1] == '.asm':
+        print("find:" + name)
+        files.append(name)
+
+# find main
+find_main = False
+for filename in files:
+    if filename == "main.asm":
+        find_main = True
+if not find_main:
+    print("No main.asm. abort.")
+    sys.exit(0)
+
+# find macros. all global
+DEF_MACRO = {}
+for filename in files:
+    f = open(filename, encoding="utf-8")
+    for line in f:
+        line_idt = line.split()
+        if not len(line_idt) == 0:
+            if line_idt[0] == "DEFINE":
+                if "0x" in line_idt[2]:
+                    value = int(line_idt[2], 16)
+                else:
+                    value = int(line_idt[2])
+                DEF_MACRO[line_idt[1]] = value
+    f.close()
+print("find macros: " + str(len(DEF_MACRO)))
+
+# set main as start
+files.remove("main.asm")
+files.insert(0, "main.asm")
+print(files)
 
 line_list_1 = []
-idt_list = {}
-for line in f:
-    print(line)
-    if '//' in line:
-        line = line[0:line.find('//')] + "\n"
-    if not line == '':
-        line_list_1.append(line)
+for file in files:
+    local_list_1 = []
+    f = open(file, encoding="utf-8")
+    for line in f:
+        if '//' in line:
+            line = line[0:line.find('//')] + "\n"
+        if not len(line.split()) == 0:
+            line_idt = line.split()
+            if not line_idt[0] == "DEFINE":
+                local_list_1.append(line)
+    local_list_2 = []
+    for line in local_list_1:
+        if not len(line.split()) == 0:
+            local_list_2.append(line)
+    line_list_1.extend(local_list_2)
 
 line_list_2 = []
 for line in line_list_1:
-    if not len(line.split()) == 0:
+    line_idt = line.split()
+    if line_idt[0] == "LI" and (line_idt[2] in DEF_MACRO):
+        print("find LI MACRO")
+    else:
         line_list_2.append(line)
 
 line_list_3 = []
