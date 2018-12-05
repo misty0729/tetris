@@ -72,7 +72,7 @@ for line in line_list_1:
         print(macro_value)
         mv_hi = int(macro_value / 256)
         mv_lo = macro_value % 256
-        line_list_2.append("LI " + line_idt[1] + " " + str(hex(mv_hi))[2:] + "\n")
+        line_list_2.append("LI " + line_idt[1] + " " + str(hex(mv_hi + (1 if mv_lo % 256 > 127 else 0)))[2:] + "\n")
         print(line_list_2[-1])
         line_list_2.append("SLL " + line_idt[1] + " " + line_idt[1] + " 0\n")
         print(line_list_2[-1])
@@ -95,6 +95,8 @@ for line in line_list_2:
         line_list_3.append("NOP\n")
         print(line_list_3[-2])
     elif line_idt[0] == "RETURN":
+        line_list_3.append("LW_SP R7 0\n")
+        line_list_3.append("ADDSP 1\n")
         line_list_3.append("JR R7\n")
         line_list_3.append("NOP\n")
         print(line_list_3[-1])
@@ -141,9 +143,9 @@ for line in line_list_5:
                     offset += 2048
                     line_list_5[l_num] = (line.replace(idt, str(hex(offset))[2:]))
             elif line_idt[0] == "LI":
-                line_list_5[l_num] = line.replace(idt, str(hex(int(idt_list[idt] / 256)))[2:])
+                line_list_5[l_num] = line.replace(idt, str(hex(int((idt_list[idt] + 16383) / 256) + (1 if ((idt_list[idt] + 16383)%256 >127) else 0)))[2:])
             elif line_idt[0] == "ADDIU":
-                line_list_5[l_num] = line.replace(idt, str(hex(idt_list[idt] % 256))[2:])
+                line_list_5[l_num] = line.replace(idt, str(hex((idt_list[idt] + 16383) % 256))[2:])
             else:
                 if offset < 0:
                     offset += 256

@@ -1,8 +1,9 @@
 write_block:
+    ADDSP FF
+    SW_SP R7 0
     //TODO:将R1 R2 R3表示的方块写入graph
     //大体从checkValid复制粘贴过来的_(:з」∠)_
     CALL get_now_state  //得到表示状态的16位bit
-
     ADDSP FF        //这段也不够用QAQ
     SW_SP R1 0
     ADDSP FF        
@@ -13,9 +14,9 @@ write_block:
     MOVE R4 R0          //把值挪出来,R4存状态，16位0/1
     LI R5 4             //存一下相对列号，从最后一个格子开始判断
     LI R6 graph         //R6存储相应格子对应到graph里的地址
+    ADDU R6 R1 R6
     LI R1 21            //一个board第一个格子和最后一个格子的位置差（相对于整个棋盘来说）3*10+3=33=0X21
-    ADDIU R6 R1 R6
-    ADDIU R6 R1 R6      //当前指向最后一个格子
+    ADDU R6 R1 R6       //当前指向最后一个格子
     LI R3 10            //计数器，循环16次
     write_loop:
         LI R1 1
@@ -39,7 +40,6 @@ write_block:
                 ADDIU R3 FF
                 BNEZ R3 write_loop
                 NOP
-
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1
     LW_SP R2 0  

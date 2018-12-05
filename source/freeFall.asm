@@ -1,4 +1,6 @@
 freefall:
+    ADDSP FF
+    SW_SP R7 0
     //TODO:尝试自由下落一行，然后判断合法性，可以的话返回1，不行的话返回0，并将当前数据写入graph，同时要判断能否消行
     CALL clear_block    
     LI R4 board_col_size

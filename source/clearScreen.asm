@@ -1,4 +1,6 @@
 clear_screen:
+    ADDSP FF
+    SW_SP R7 0
     LI R6 graph
     LI R4 board_size    //计数器，将整个棋盘置为0之后显示一下
     clear_loop:

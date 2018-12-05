@@ -23,38 +23,28 @@ INIT:
     ADDSP FF
     SW_SP R7 0
 
-    CALL clear_screen   //清屏
-    CALL init_state     //把状态数据和下一个状态的数据写入指定位置
+    CALL clear_screen
+    CALL init_state
     CALL get_new_block  //新生成一个块作为当前块, R1存储左上角光标位置, R2存储列号, R3存储当前状态号
-    CALL add_fake_line  //在graph的最后面加一行（即第21行）假的方块用来碰撞检测,以及前一行置成0
 MAINLOOP:
-    LI R6 8             
+    LI R4 8             
     ADDSP FF
-    SW_SP R6 0     //此处压栈了一个循环变量，记住，根据之后的情况调整栈帧的大小
+    SW_SP R4 0     //此处压栈了一个循环变量，记住，根据之后的情况调整栈帧的大小
 CHECKKEYBOARD:
     CALL update_view      //更新视图
-    LW_SP R6 0
-    ADDIU R6 FF
-    SW_SP R6 0
-    BEQZ R6 AUTOUPDATE
+    LW_SP R4 0
+    ADDIU R4 FF
+    SW_SP R4 0
+    BEQZ R4 AUTOUPDATE
     NOP
     CALL delay_160W       //延时100W条指令
-    CALL get_keyboard     //获取键盘按下的值
-    CMPI R0 10            //判断是否是ESC
-    BTEQZ QUIT
-    NOP
-    CMPI R0 11            //判断是否是上键
-    BTEQZ HANDLEROTATE
-    NOP
-    CMPI R0 12            //判断是否是下键
-    BTEQZ HANDLEDOWNTO
-    NOP
-    CMPI R0 13            //判断是否是左键
-    BTEQZ HANDLELSHIFT
-    NOP
-    CMPI R0 14            //判断是否是右键
-    BTEQZ HANDLERSHIFT
-    NOP
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 80
+    SW R5 R6 4
+    SW R5 R6 5
+
     B CHECKKEYBOARD
     NOP
 
@@ -115,16 +105,29 @@ HANDLEDOWNTO:           //处理下方向键的直接落下
     B CHECKKEYBOARD
     NOP
 AUTOUPDATE:             //固定时间自动更新
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 81
+    SW R5 R6 4
+    SW R5 R6 5
+
     CALL freefall       //调用自由下落
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 82
+    SW R5 R6 4
+    SW R5 R6 5
+
     BNEZ R0 FREEFALLSUCCESS            //自由下落返回值为成功与否
     NOP
     CALL get_new_block
 FREEFALLSUCCESS:
     B MAINLOOP
     NOP
-
 QUIT:
-    ADDSP 1 //TODO:开的栈给挪回去，只开了一个循环变量，所以加1
+    ADDSP 1        //栈归回去
     LW_SP R7 0     //把R6和R7赋值回去
     ADDSP 1
     LW_SP R6 0

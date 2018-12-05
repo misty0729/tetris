@@ -1,4 +1,6 @@
 update_view:
+    ADDSP FF
+    SW_SP R7 0
     //TODO:把graph里的数据发给VGA显示，只显示前20*10，后面可能有值（自己加的假结点）但是不会显示
     //这段代码有点长，寄存器不够用，把R1 R2 R3压栈_(:з」∠)_
     ADDSP FF        
@@ -37,7 +39,7 @@ update_view:
         NOP
         LI R5 board_col_size
         LI R1 3C      //从这一行的最后一个格子到下一行的第一个格子的VGA的坐标差80-20=60
-        ADDU R3 R6 R3 //VGA坐标跳到下一行的第一个格子
+        ADDU R3 R1 R3 //VGA坐标跳到下一行的第一个格子
         NONEWLINE:
             ADDIU R4 FF  //计数器减1
             ADDIU R6 1   //格子地址加1

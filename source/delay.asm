@@ -1,5 +1,7 @@
 delay_10W:
-    LI R4 FF
+    ADDSP FF
+    SW_SP R7 0
+    LI R4 0
     SLL R4 R4 0
     ADDIU R4 FF     //R4=65535
     delay_LOOP:
@@ -9,21 +11,29 @@ delay_10W:
     RETURN
 
 delay_20W:
+    ADDSP FF
+    SW_SP R7 0
     CALL delay_10W
     CALL delay_10W
     RETURN
 
 delay_40W:
+    ADDSP FF
+    SW_SP R7 0
     CALL delay_20W
     CALL delay_20W
     RETURN
 
 delay_80W:
+    ADDSP FF
+    SW_SP R7 0
     CALL delay_40W
     CALL delay_40W
     RETURN
 
 delay_160W:
+    ADDSP FF
+    SW_SP R7 0
     CALL delay_80W
     CALL delay_80W
     RETURN

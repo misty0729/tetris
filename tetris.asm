@@ -7,86 +7,62 @@ ADDIU R4 0
     SW_SP R6 0
     ADDSP FF
     SW_SP R7 0
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 c6
+ADDIU R6 c9
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 2
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 6b
+ADDIU R6 90
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 5
-MFPC R7
-ADDIU R7 3
-JR R6
-NOP
-LI R6 0
-SLL R6 R6 0
-ADDIU R6 ed
+ADDIU R6 32
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
 NOP
-    LI R6 8             
+    LI R4 8             
     ADDSP FF
-    SW_SP R6 0     
+    SW_SP R4 0     
 NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 10
+ADDIU R6 43
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-    LW_SP R6 0
-    ADDIU R6 FF
-    SW_SP R6 0
-    BEQZ R6 9c
+    LW_SP R4 0
+    ADDIU R4 FF
+    SW_SP R4 0
+    BEQZ R4 8b
     NOP
-LI R6 2
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 1d
+ADDIU R6 34
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 2
-SLL R6 R6 0
-ADDIU R6 ff
-MFPC R7
-ADDIU R7 3
-JR R6
-NOP
-    CMPI R0 10            
-    BTEQZ 9f
-    NOP
-    CMPI R0 11            
-    BTEQZ c
-    NOP
-    CMPI R0 12            
-    BTEQZ 72
-    NOP
-    CMPI R0 13            
-    BTEQZ 2b
-    NOP
-    CMPI R0 14            
-    BTEQZ 4a
-    NOP
-    B 7d5
+    LI R5 BF                        
+    SLL R5 R5 0
+    LI R6 80
+    SW R5 R6 4
+    SW R5 R6 5
+    B 7e6
     NOP
 NOP
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 a0
+ADDIU R6 9f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -99,9 +75,9 @@ ADDIU R4 0
     ADDSP FF     
     SW_SP R3 0     
     MOVE R3 R5
-LI R6 1
+LI R6 41
 SLL R6 R6 0
-ADDIU R6 5f
+ADDIU R6 58
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -111,31 +87,31 @@ NOP
     LW_SP R3 0
 NOP
     ADDSP 1
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 48
+ADDIU R6 7f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-    B 7b0
+    B 7c1
     NOP
 NOP
     CMPI R2 0           
-    BTEQZ ac
+    BTEQZ bd
     NOP
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 a0
+ADDIU R6 9f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
     ADDIU R2 FF
     ADDIU R1 FF
-LI R6 1
+LI R6 41
 SLL R6 R6 0
-ADDIU R6 5f
+ADDIU R6 58
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -145,31 +121,31 @@ NOP
     ADDIU R2 1
     ADDIU R1 1
 NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 48
+ADDIU R6 7f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-    B 78e
+    B 79f
     NOP
 NOP
     CMPI R2 6           
-    BTEQZ 8a
+    BTEQZ 9b
     NOP
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 a0
+ADDIU R6 9f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
     ADDIU R2 1
     ADDIU R1 1
-LI R6 1
+LI R6 41
 SLL R6 R6 0
-ADDIU R6 5f
+ADDIU R6 58
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -179,56 +155,66 @@ NOP
     ADDIU R2 FF
     ADDIU R1 FF
 NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 48
+ADDIU R6 7f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-    B 76c
+    B 77d
     NOP
 NOP
-LI R6 2
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 2e
+ADDIU R6 49
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
     BNEZ R0 f7    
     NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 5
+ADDIU R6 32
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-    B 759
+    B 76a
     NOP
 NOP
-LI R6 2
+    LI R5 BF                        
+    SLL R5 R5 0
+    LI R6 81
+    SW R5 R6 4
+    SW R5 R6 5
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 2e
+ADDIU R6 49
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+    LI R5 BF                        
+    SLL R5 R5 0
+    LI R6 82
+    SW R5 R6 4
+    SW R5 R6 5
     BNEZ R0 8            
     NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 5
+ADDIU R6 32
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
 NOP
-    B 741
+    B 748
     NOP
 NOP
-    ADDSP 1 
+    ADDSP 1        
     LW_SP R7 0     
     ADDSP 1
     LW_SP R6 0
@@ -236,6 +222,8 @@ NOP
     JR R7
     NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
 LI R6 c0
 SLL R6 R6 0
 ADDIU R6 0
@@ -256,7 +244,7 @@ NOP
 LI R6 c0
 SLL R6 R6 0
 ADDIU R6 0
-LI R4 0
+LI R4 1
 SLL R4 R4 0
 ADDIU R4 c8
     ADDU R6 R4 R6
@@ -273,9 +261,13 @@ NOP
         B 7f8
         NOP
 NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
     ADDSP FF        
     SW_SP R1 0
     ADDSP FF        
@@ -303,7 +295,7 @@ NOP
                 ADDIU R6 1
                 BEQZ R4 f7
                 NOP
-        BNEZ R2 11
+        BNEZ R2 13
         NOP
 NOP
             ADDIU R5 FF
@@ -319,6 +311,8 @@ NOP
     LW_SP R1 0  
     ADDSP 1
     LI R0 0
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
@@ -340,19 +334,21 @@ NOP
         B 7f7
         NOP
 NOP
-LI R6 1
+LI R6 41
 SLL R6 R6 0
-ADDIU R6 15
+ADDIU R6 a
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-        B 7db
+        B 7d9
         NOP
 NOP
-LI R6 2
+    ADDSP FF
+    SW_SP R7 0
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 63
+ADDIU R6 84
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -368,9 +364,9 @@ NOP
 LI R6 c0
 SLL R6 R6 0
 ADDIU R6 0
+    ADDU R6 R1 R6      
     LI R1 21            
-    ADDIU R6 R1 R6
-    ADDIU R6 R1 R6      
+    ADDU R6 R1 R6      
     LI R3 10            
 NOP
         LI R1 1
@@ -381,7 +377,7 @@ NOP
         NOP
         BEQZ R2 3    
         NOP
-        B 16      
+        B 18      
         NOP  
 NOP
             ADDIU R5 FF
@@ -402,6 +398,8 @@ NOP
     LW_SP R1 0  
     ADDSP 1
     LI R0 1
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
@@ -412,9 +410,13 @@ NOP
     LW_SP R1 0  
     ADDSP 1
     LI R0 0
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
     ADDSP FF        
     SW_SP R1 0
     ADDSP FF        
@@ -425,9 +427,9 @@ NOP
 LI R6 c0
 SLL R6 R6 0
 ADDIU R6 0
+    ADDU R6 R1 R6      
     LI R1 21            
-    ADDIU R6 R1 R6
-    ADDIU R6 R1 R6      
+    ADDU R6 R1 R6      
     LI R3 10            
 NOP
         LI R2 0 
@@ -441,7 +443,7 @@ NOP
 NOP
                 ADDIU R6 FF
                 ADDIU R3 FF
-                BNEZ R3 11
+                BNEZ R3 15
                 NOP
     LW_SP R3 0  
     ADDSP 1
@@ -450,13 +452,17 @@ NOP
     LW_SP R1 0  
     ADDSP 1
     LI R0 1
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
 LI R6 c0
 SLL R6 R6 0
 ADDIU R6 0
-LI R4 0
+LI R4 1
 SLL R4 R4 0
 ADDIU R4 c8
 NOP
@@ -469,97 +475,121 @@ NOP
         B 7f8
         NOP
 NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 10
+ADDIU R6 43
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-    LI R4 FF
+    ADDSP FF
+    SW_SP R7 0
+    LI R4 0
     SLL R4 R4 0
     ADDIU R4 FF     
 NOP
         ADDIU R4 FF   
         BNEZ R4 fd
         NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R6 1
+    ADDSP FF
+    SW_SP R7 0
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 e0
+ADDIU R6 e7
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 e0
+ADDIU R6 e7
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R6 1
+    ADDSP FF
+    SW_SP R7 0
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 ea
+ADDIU R6 f5
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 ea
+ADDIU R6 f5
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R6 1
+    ADDSP FF
+    SW_SP R7 0
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 fb
+ADDIU R6 a
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 1
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 fb
+ADDIU R6 a
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R6 2
+    ADDSP FF
+    SW_SP R7 0
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 c
+ADDIU R6 1f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 2
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 c
+ADDIU R6 1f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R6 1
+    ADDSP FF
+    SW_SP R7 0
+LI R6 42
 SLL R6 R6 0
-ADDIU R6 a0
+ADDIU R6 9f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -568,23 +598,25 @@ LI R4 0
 SLL R4 R4 0
 ADDIU R4 a
     ADDU R1 R4 R1           
-LI R6 1
+LI R6 41
 SLL R6 R6 0
-ADDIU R6 5f
+ADDIU R6 58
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-    BEQZ R0 b
+    BEQZ R0 d
     NOP
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 48
+ADDIU R6 7f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
     LI R0 1
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
@@ -592,33 +624,41 @@ LI R4 0
 SLL R4 R4 0
 ADDIU R4 a
     SUBU R1 R4 R1           
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 48
+ADDIU R6 7f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
-LI R6 1
+LI R6 41
 SLL R6 R6 0
-ADDIU R6 15
+ADDIU R6 a
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
     LI R0 0
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
 LI R4 d0
 SLL R4 R4 0
 ADDIU R4 0
     ADDU R4 R3 R4
     LW R4 R0 0
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R4 88    
+ADDSP FF
+SW_SP R7 0
+LI R4 89    
 SLL R4 R4 0             
 ADDIU R4 c0
 LI R5 D0
@@ -646,7 +686,7 @@ LI R4 8e
 SLL R4 R4 0
 ADDIU R5 1
 SW R5 R4 0
-LI R4 c8    
+LI R4 c9    
 SLL R4 R4 0
 ADDIU R4 80
 ADDIU R5 1
@@ -659,7 +699,7 @@ LI R4 4e
 SLL R4 R4 0
 ADDIU R5 1
 SW R5 R4 0
-LI R4 8c    
+LI R4 8d    
 SLL R4 R4 0
 ADDIU R4 80
 ADDIU R5 1
@@ -673,7 +713,7 @@ SLL R4 R4 0
 ADDIU R4 40
 ADDIU R5 1
 SW R5 R4 0
-LI R4 4c    
+LI R4 4d    
 SLL R4 R4 0
 ADDIU R4 80
 ADDIU R5 1
@@ -691,7 +731,7 @@ LI R4 6c
 SLL R4 R4 0
 ADDIU R5 1
 SW R5 R4 0
-LI R4 88 
+LI R4 89 
 SLL R4 R4 0
 ADDIU R4 88
 ADDIU R5 1
@@ -763,26 +803,40 @@ SW R5 R4 0
 ADDIU R5 1
 LI R4 12
 SW R5 R4 0 
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
     LI R5 BF
     SLL R5 R5 0
     LW R5 R0 6
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
+    ADDSP FF
+    SW_SP R7 0
     LI R1 4 
     LI R2 4 
     LI R3 0 
-LI R6 3
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 48
+ADDIU R6 7f
 MFPC R7
 ADDIU R7 3
 JR R6
 NOP
+LW_SP R7 0
+ADDSP 1
+JR R7
 NOP
+NOP
+    ADDSP FF
+    SW_SP R7 0
     ADDSP FF        
     SW_SP R1 0
     ADDSP FF        
@@ -790,7 +844,7 @@ NOP
     ADDSP FF        
     SW_SP R3 0
     LI R3 0     
-LI R4 0
+LI R4 1
 SLL R4 R4 0
 ADDIU R4 c8
 LI R5 0
@@ -824,7 +878,7 @@ LI R5 0
 SLL R5 R5 0
 ADDIU R5 a
         LI R1 3C      
-        ADDU R3 R6 R3 
+        ADDU R3 R1 R3 
 NOP
             ADDIU R4 FF  
             ADDIU R6 1   
@@ -836,12 +890,16 @@ NOP
     ADDSP 1
     LW_SP R1 0  
     ADDSP 1
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP
 NOP
-LI R6 2
+    ADDSP FF
+    SW_SP R7 0
+LI R6 43
 SLL R6 R6 0
-ADDIU R6 63
+ADDIU R6 84
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -857,9 +915,9 @@ NOP
 LI R6 c0
 SLL R6 R6 0
 ADDIU R6 0
+    ADDU R6 R1 R6
     LI R1 21            
-    ADDIU R6 R1 R6
-    ADDIU R6 R1 R6      
+    ADDU R6 R1 R6       
     LI R3 10            
 NOP
         LI R1 1
@@ -868,7 +926,7 @@ NOP
         LI R2 0 
         BEQZ R1 4  
         NOP
-LI R2 b0
+LI R2 b1
 SLL R2 R2 0
 ADDIU R2 b1
 NOP
@@ -891,5 +949,7 @@ NOP
     LW_SP R1 0  
     ADDSP 1
     LI R0 1
+LW_SP R7 0
+ADDSP 1
 JR R7
 NOP

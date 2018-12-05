@@ -1,4 +1,6 @@
 check_get_point:
+    ADDSP FF
+    SW_SP R7 0
     //TODO:检测当前的graph是否可以消行（得分），没有返回值（只判断前20行），可以消行将执行消行
     ADDSP FF        //我估计这段也不够用，先压再说_(:з」∠)_
     SW_SP R1 0

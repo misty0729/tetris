@@ -1,4 +1,6 @@
 add_fake_line:
+    ADDSP FF
+    SW_SP R7 0
     LI R6 graph
     ADDIU R6 FA 
     LI R4 board_col_size
