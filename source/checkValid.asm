@@ -29,7 +29,7 @@ check_valid:
         NOP  
         prepare_for_next_valid:
             ADDIU R5 FF
-            BNEZ R5 no_change_line
+            BNEZ R5 no_change_line_valid
             NOP
             ADDIU R6 FA     //这一行的第一个到上一行的最后一个，位置要-6
             LI R5 4

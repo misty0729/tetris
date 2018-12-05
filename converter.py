@@ -86,14 +86,16 @@ line_list_3 = []
 for line in line_list_2:
     line_idt = line.split()
     if line_idt[0] == "CALL":
-        line_list_3.append("LI R7 " + line_idt[1] + "\n")
-        line_list_3.append("SLL R7 R7 0\n")
-        line_list_3.append("ADDIU R7 " + line_idt[1] + "\n")
-        line_list_3.append("JALR R7\n")
+        line_list_3.append("LI R6 " + line_idt[1] + "\n")
+        line_list_3.append("SLL R6 R6 0\n")
+        line_list_3.append("ADDIU R6 " + line_idt[1] + "\n")
+        line_list_3.append("MFPC R7\n")
+        line_list_3.append("ADDIU R7 3\n")
+        line_list_3.append("JR R6\n")
         line_list_3.append("NOP\n")
         print(line_list_3[-2])
     elif line_idt[0] == "RETURN":
-        line_list_3.append("JRRA\n")
+        line_list_3.append("JR R7\n")
         line_list_3.append("NOP\n")
         print(line_list_3[-1])
     else:
