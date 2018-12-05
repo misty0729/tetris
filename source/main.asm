@@ -124,7 +124,7 @@ FREEFALLSUCCESS:
     NOP
 
 QUIT:
-    ADDSP 1 //TODO:开的栈给挪回去,只开了一个循环变量，所以加1
+    ADDSP 1 //TODO:开的栈给挪回去，只开了一个循环变量，所以加1
     LW_SP R7 0     //把R6和R7赋值回去
     ADDSP 1
     LW_SP R6 0

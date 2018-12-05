@@ -8,46 +8,40 @@ update_view:
     ADDSP FF        
     SW_SP R3 0
 
-    
-    LI R4 0     //R4存储当前要画的格子的位置
-    LI R5 0     //R5存储列号
-    LI R6 0     //R6存储对应的屏幕位置（VGA用）
+    LI R3 0     //R3存储对应的屏幕位置（VGA用）
+    LI R4 block_size     //R4是计数器，为0时跳出
+    LI R5 block_col_size     //R5是第二层计数器
+    LI R6 graph //R6存储当前的格子在graph里的地址
     update_view_loop:
         //通知VGA要显示该格子
-        LI R7 graph
-        ADDU R7 R4 R7
-        LW R7 R0 0
+        LW R6 R0 0  //把格子图像load到R0里面
         MOVE R1 R0  //显示左半边
         SRL R1 R1 0 
         LI R2 FF
         AND R2 R1
         LI R1 BF
         SLL R1 R1 0 
-        SW R1 R6 4
+        SW R1 R3 4
         SW R1 R2 5
-        ADDIU R6 1
+        ADDIU R3 1
         LI R2 FF    //显示右半边
         AND R2 R0
         LI R1 BF
         SLL R1 R1 0 
-        SW R1 R6 4
+        SW R1 R3 4
         SW R1 R2 5
-        ADDIU R6 1
-        //显示该格子完毕
-        ADDIU R4 1  //移到下一个位置
-        ADDIU R5 1
-        ADDIU R6 1
-        LI R7 block_col_size //通过比较列号来判断是否能到达下一行
-        CMP R5 R7
-        BTNEZ NONEWLINE //不用换行
+        ADDIU R3 1
+        //通过比较列号来判断是否能到达下一行
+        ADDIU R5 FF
+        BNEZ R5 NONEWLINE //不用换行
         NOP
-        LI R5 0
-        LI R7 newline_step
-        ADDU R6 R7 R6 //VGA坐标跳到下一行的第一个格子
+        LI R5 block_col_size
+        LI R1 3C      //从这一行的最后一个格子到下一行的第一个格子的VGA的坐标差80-20=60
+        ADDU R3 R6 R3 //VGA坐标跳到下一行的第一个格子
         NONEWLINE:
-            LI R7 board_size    //判断是否出了框了
-            CMP R4 R7
-            BTNEZ update_view_loop
+            ADDIU R4 FF  //计数器减1
+            ADDIU R6 1   //格子地址加1
+            BNEZ R4 update_view_loop
             NOP
 
     LW_SP R3 0  //把R1 R2 R3取回来
