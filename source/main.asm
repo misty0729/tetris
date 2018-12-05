@@ -35,9 +35,9 @@ CHECKKEYBOARD:
     LW_SP R4 0
     ADDIU R4 FF
     SW_SP R4 0
-    BEQZ R4 AUTOUPDATE
+    B AUTOUPDATE
     NOP
-    CALL delay_160W       //延时100W条指令
+    CALL delay_2560W       //延时100W条指令
 
     LI R5 BF                        // DEBUG
     SLL R5 R5 0

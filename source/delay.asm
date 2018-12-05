@@ -37,3 +37,31 @@ delay_160W:
     CALL delay_80W
     CALL delay_80W
     RETURN
+
+delay_320W:
+    ADDSP FF
+    SW_SP R7 0
+    CALL delay_160W
+    CALL delay_160W
+    RETURN
+
+delay_640W:
+    ADDSP FF
+    SW_SP R7 0
+    CALL delay_320W
+    CALL delay_320W
+    RETURN
+
+delay_1280W:
+    ADDSP FF
+    SW_SP R7 0
+    CALL delay_640W
+    CALL delay_640W
+    RETURN
+
+delay_2560W:
+    ADDSP FF
+    SW_SP R7 0
+    CALL delay_1280W
+    CALL delay_1280W
+    RETURN

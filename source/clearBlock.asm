@@ -4,6 +4,12 @@ clear_block:
     //TODO:将R1 R2 R3表示的方块从graph里清除
     //大体从writeBlock复制粘贴过来的_(:з」∠)_
 
+   LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 88
+    SW R5 R6 4
+    SW R5 R6 5
+
     ADDSP FF        //这段也不够用QAQ
     SW_SP R1 0
     ADDSP FF        
@@ -33,11 +39,16 @@ clear_block:
                 BNEZ R3 clear_loop
                 NOP
 
+   LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 89
+    SW R5 R6 4
+    SW R5 R6 5
+
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1
     LW_SP R2 0  
     ADDSP 1
     LW_SP R1 0  
     ADDSP 1
-    LI R0 1
     RETURN

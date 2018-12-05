@@ -11,6 +11,16 @@ check_valid:
     ADDSP FF        
     SW_SP R3 0
 
+    B VALID
+    NOP
+    
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 93
+    SW R5 R6 4
+    SW R5 R6 5
+
+
     MOVE R4 R0          //把值挪出来,R4存状态，16位0/1
     LI R5 4             //存一下相对列号，从最后一个格子开始判断
     LI R6 graph         //R6存储相应格子对应到graph里的地址
@@ -42,6 +52,13 @@ check_valid:
                 NOP
 
 VALID:
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 90
+    SW R5 R6 4
+    SW R5 R6 5
+
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1
     LW_SP R2 0  
@@ -51,6 +68,13 @@ VALID:
     LI R0 1
     RETURN
 NOTVALID:
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 91
+    SW R5 R6 4
+    SW R5 R6 5
+
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1
     LW_SP R2 0  
