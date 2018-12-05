@@ -1,10 +1,10 @@
 DEFINE board_row_size 0x14  //0x14=20行
 DEFINE board_col_size 0xA   //0xA=10行
 DEFINE board_size 0x190     //0x190=20*10=200个格子
-DEFINE newline_step 0x3C    //从这一行的最后一个格子到下一行的第一个格子的VGA的坐标差80-20=60
 DEFINE graph 0xC000         /从0XC000处开始存储graph每个格子的状态
 DEFINE now_state 0xD000     //从0XD000处开始存储状态->到格子状态的映射
 DEFINE next_state 0xE000    //从0XD000处开始存储状态->下一个状态的映射
+DEFINE user_stack 0xF000    //从0XF000处往下（--）作为用户栈
 DEFINE moving_left 0xB0     //正在移动中的方块的左半部分
 DEFINE moving_right 0xB1    //正在移动中的方块的右半部分
 DEFINE moving_block 0xB0B1  //正在移动中的Image
@@ -12,11 +12,13 @@ DEFINE static_left 0x82     //静止的方块的左半部分
 DEFINE static_right 0x83    //静止的方块的右半部分
 DEFINE static_block 0x8283  //静止的方块的Image
 //约定
-//R1 R2 R3作为全局变量来使用，含义下面有
+//R1 R2 R3作为全局变量来使用，含义下面有，其他函数尽量不使用这三个寄存器
 //R0作为函数返回值使用
 //R4 R5 R6 R7作为局部变量来使用，约定每个函数内部可以自行更改他的值（其实更好的做法是save_reg和load_reg?_(:з」∠)_)
 INIT:
-    ADDSP FF        //将R6和R7压栈
+    LI R4 user_stack        
+    MTSP R4                 //初始化栈顶位置
+    ADDSP FF                //将R6和R7压栈
     SW_SP R6 0
     ADDSP FF
     SW_SP R7 0
