@@ -47,7 +47,7 @@ CHECKKEYBOARD:
     BTEQZ HANDLEROTATE
     NOP
     CMPI R0 12            //判断是否是下键
-    BTEQZ HANDLELSHIFT
+    BTEQZ HANDLEDOWNTO
     NOP
     CMPI R0 13            //判断是否是左键
     BTEQZ HANDLELSHIFT
@@ -124,7 +124,7 @@ FREEFALLSUCCESS:
     NOP
 
 QUIT:
-    //TODO:开的栈给挪回去
+    ADDSP 1 //TODO:开的栈给挪回去,只开了一个循环变量，所以加1
     LW_SP R7 0     //把R6和R7赋值回去
     ADDSP 1
     LW_SP R6 0
