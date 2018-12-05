@@ -6,7 +6,7 @@ add_fake_line:
         LI R5 0             
         SW R6 R5 0
         ADDIU R4 FF
-        BEQZ R4 first_loop_end:
+        BEQZ R4 first_loop_end
         NOP
         ADDIU R6 1
         B first_loop
@@ -20,7 +20,7 @@ add_fake_line:
         LI R5 1
         SW R6 R5 0
         ADDIU R4 FF
-        BEQZ R4 last_loop_end:
+        BEQZ R4 last_loop_end
         NOP 
         ADDIU R6 1
         B last_loop

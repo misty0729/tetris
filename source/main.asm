@@ -34,7 +34,7 @@ MAINLOOP:
 CHECKKEYBOARD:
     CALL update_view      //更新视图
     LW_SP R6 0
-    ADDSP R6 FF
+    ADDIU R6 FF
     SW_SP R6 0
     BEQZ R6 AUTOUPDATE
     NOP
