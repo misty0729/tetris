@@ -130,6 +130,7 @@ print(idt_list)
 l_num = 0
 for line in line_list_5:
     line_idt = line.split()
+    print(line)
     for idt in line_idt:
         if idt in idt_list:
             offset = idt_list[idt] - l_num - 1
@@ -140,9 +141,9 @@ for line in line_list_5:
                     offset += 2048
                     line_list_5[l_num] = (line.replace(idt, str(hex(offset))[2:]))
             elif line_idt[0] == "LI":
-                line_list_5[l_num] = line.replace(idt, str(hex(int(l_num / 256)))[2:])
+                line_list_5[l_num] = line.replace(idt, str(hex(int(idt_list[idt] / 256)))[2:])
             elif line_idt[0] == "ADDIU":
-                line_list_5[l_num] = line.replace(idt, str(hex(l_num % 256))[2:])
+                line_list_5[l_num] = line.replace(idt, str(hex(idt_list[idt] % 256))[2:])
             else:
                 if offset < 0:
                     offset += 256
