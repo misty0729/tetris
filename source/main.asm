@@ -12,11 +12,13 @@ DEFINE static_left 0x82     //静止的方块的左半部分
 DEFINE static_right 0x83    //静止的方块的右半部分
 DEFINE static_block 0x8283  //静止的方块的Image
 //约定
-//R1 R2 R3作为全局变量来使用，含义下面有
+//R1 R2 R3作为全局变量来使用，含义下面有，其他函数尽量不使用这三个寄存器
 //R0作为函数返回值使用
 //R4 R5 R6 R7作为局部变量来使用，约定每个函数内部可以自行更改他的值（其实更好的做法是save_reg和load_reg?_(:з」∠)_)
 INIT:
-    ADDSP FF        //将R6和R7压栈
+    LI R4 user_stack        
+    MTSP R4                 //初始化栈顶位置
+    ADDSP FF                //将R6和R7压栈
     SW_SP R6 0
     ADDSP FF
     SW_SP R7 0
