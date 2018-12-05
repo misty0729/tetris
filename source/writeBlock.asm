@@ -14,15 +14,15 @@ write_block:
     LI R5 4             //存一下相对列号，从最后一个格子开始判断
     LI R6 graph         //R6存储相应格子对应到graph里的地址
     LI R7 21            //一个block第一个格子和最后一个格子的位置差（相对于整个棋盘来说）3*10+3=33=0X21
-    ADDIU R6 R1 R6
-    ADDIU R6 R7 R6      //当前指向最后一个格子
+    ADDU R6 R1 R6
+    ADDU R6 R7 R6      //当前指向最后一个格子
     LI R3 10            //计数器，循环16次
     write_loop:
         LI R1 1
         AND R1 R4       //R1代表当前格子有没有
         SRL R4 R4 1
         LI R2 0 
-        BEQZ R1         //没有的话直接就写0了
+        BEQZ R1 write_to_graph        //没有的话直接就写0了
         NOP
         LI R2 moving_block  //否则写moving_block
         write_to_graph: 
