@@ -15,20 +15,20 @@ clear_block:
     ADDIU R6 R1 R6
     ADDIU R6 R1 R6      //当前指向最后一个格子
     LI R3 10            //计数器，循环16次
-    write_loop:
+    clear_loop:
         LI R2 0 
         SW R6 R2 0      //R6是该格子对应在graph里的位置，因为是清空，所以直接写0就完事儿了
         
-        prepare_for_next_write:
+        prepare_for_next_clear:
             ADDIU R5 FF
-            BNEZ R5 no_change_line
+            BNEZ R5 no_change_line_clear
             NOP
             ADDIU R6 FA     //这一行的第一个到上一行的最后一个，位置要-6
             LI R5 4
-            no_change_line_write:
+            no_change_line_clear:
                 ADDIU R6 FF
                 ADDIU R3 FF
-                BNEZ R3 write_loop
+                BNEZ R3 clear_loop
                 NOP
 
     LW_SP R3 0  //把R1 R2 R3取回来

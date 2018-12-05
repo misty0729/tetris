@@ -9,8 +9,8 @@ update_view:
     SW_SP R3 0
 
     LI R3 0     //R3存储对应的屏幕位置（VGA用）
-    LI R4 block_size     //R4是计数器，为0时跳出
-    LI R5 block_col_size     //R5是第二层计数器
+    LI R4 board_size     //R4是计数器，为0时跳出
+    LI R5 board_col_size     //R5是第二层计数器
     LI R6 graph //R6存储当前的格子在graph里的地址
     update_view_loop:
         //通知VGA要显示该格子
@@ -35,7 +35,7 @@ update_view:
         ADDIU R5 FF
         BNEZ R5 NONEWLINE //不用换行
         NOP
-        LI R5 block_col_size
+        LI R5 board_col_size
         LI R1 3C      //从这一行的最后一个格子到下一行的第一个格子的VGA的坐标差80-20=60
         ADDU R3 R6 R3 //VGA坐标跳到下一行的第一个格子
         NONEWLINE:

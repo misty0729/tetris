@@ -59,7 +59,9 @@ for file in files:
         if not len(line.split()) == 0:
             local_list_2.append(line)
     line_list_1.extend(local_list_2)
-
+#print("size of local_list: " + str(len(line_list_1)))
+#print("local_list: " + str(line_list_1))
+print("local_list_2: " + str(local_list_2))
 # LI MACRO
 line_list_2 = []
 for line in line_list_1:
@@ -88,9 +90,11 @@ for line in line_list_2:
         line_list_3.append("SLL R7 R7 0\n")
         line_list_3.append("ADDIU R7 " + line_idt[1] + "\n")
         line_list_3.append("JALR R7\n")
+        line_list_3.append("NOP\n")
         print(line_list_3[-2])
     elif line_idt[0] == "RETURN":
         line_list_3.append("JRRA\n")
+        line_list_3.append("NOP\n")
         print(line_list_3[-1])
     else:
         line_list_3.append(line)
@@ -100,7 +104,7 @@ for line in line_list_3:
     if ':' in line:
         idt = line[0:line.find(':') + 1]
         next_line = line[line.find(':') + 1:]
-        line_list_4.append(idt)
+        line_list_4.append(idt.lstrip())
         line_list_4.append(next_line)
     else:
         line_list_4.append(line)

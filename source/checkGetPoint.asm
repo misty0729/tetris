@@ -7,10 +7,10 @@ check_get_point:
     ADDSP FF        
     SW_SP R3 0
 
-    LI R5 block_row_size    //循环次数
+    LI R5 board_row_size    //循环次数
     LI R6 graph             //R6还是当前格子信息的存储位置
     check_line_loop:
-        LI R4 block_col_size
+        LI R4 board_col_size
         LI R2 1             //R2来标记这一行是不是满的，初值为是
         loop_in_this_line:
             LW R6 R1 0      //用R1把格子信息取出来

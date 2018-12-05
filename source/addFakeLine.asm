@@ -1,7 +1,7 @@
 add_fake_line:
     LI R6 graph
     ADDIU R6 FA 
-    LI R4 block_col_size
+    LI R4 board_col_size
     first_loop:             //把棋盘前一行的全部置0
         LI R5 0             
         SW R6 R5 0
@@ -13,9 +13,9 @@ add_fake_line:
         NOP
     first_loop_end:
     LI R6 graph
-    LI R4 block_size 
+    LI R4 board_size 
     ADDU R6 R4 R6
-    LI R4 block_col_size
+    LI R4 board_col_size
     last_loop:              //把棋盘后一行的全部置1，代表有东西占了，方便碰撞检测
         LI R5 1
         SW R6 R5 0
