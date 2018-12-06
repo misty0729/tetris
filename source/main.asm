@@ -102,13 +102,10 @@ LSHIFTSUCCESS:
     B CHECKKEYBOARD
     NOP
 HANDLERSHIFT:           //处理右移
-    CMPI R2 6           //TODO:暂且认为当4格子的右边卡住边的时候，不能右移（实际并不是这样_(:з」∠)_）
-    BTEQZ CHECKKEYBOARD
-    NOP
     CALL clear_block
     ADDIU R2 1
     ADDIU R1 1
-    CALL check_valid
+    CALL check_valid    //这里会同时检测出界
     BNEZ R0 RSHIFTSUCCESS
     NOP
     ADDIU R2 FF
