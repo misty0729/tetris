@@ -14,6 +14,7 @@ get_new_block:
     BEQZ R0 game_over
     NOP
     CALL write_block    //新出现的方块要画出来
+    LI R0 1
     RETURN
 game_over:
     LI R5 BF                        // G
@@ -58,5 +59,5 @@ game_over:
     LI R6 52
     SW R5 R6 5
 
-    B QUIT
-    NOP
+    LI R0 0
+    RETURN
