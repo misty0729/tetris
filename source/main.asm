@@ -28,6 +28,8 @@ INIT:
     CALL init_state
     LI R3 0
     CALL get_new_block  //新生成一个块作为当前块, R1存储左上角光标位置, R2存储列号, R3存储当前状态号
+    BEQZ R0 QUIT
+    NOP
     CALL add_fake_line
 
 MAINLOOP:
@@ -120,6 +122,8 @@ HANDLEDOWNTO:           //处理下方向键的直接落下
     BNEZ R0 HANDLEDOWNTO    //下落成功递归调用该程序
     NOP
     CALL get_new_block
+    BEQZ R0 QUIT
+    NOP
     B CHECKKEYBOARD
     NOP
 AUTOUPDATE:             //固定时间自动更新
@@ -129,6 +133,8 @@ AUTOUPDATE:             //固定时间自动更新
     BNEZ R0 FREEFALLSUCCESS            //自由下落返回值为成功与否
     NOP
     CALL get_new_block
+    BEQZ R0 QUIT
+    NOP
 FREEFALLSUCCESS:
 
     B MAINLOOP
