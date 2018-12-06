@@ -19,7 +19,7 @@ add_fake_line:
     ADDU R6 R4 R6
     LI R4 board_col_size
     last_loop:              //把棋盘后一行的全部置1，代表有东西占了，方便碰撞检测
-        LI R5 1
+        LI R5 static_block
         SW R6 R5 0
         ADDIU R4 FF
         BEQZ R4 last_loop_end

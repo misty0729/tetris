@@ -1,5 +1,5 @@
 DEFINE board_row_size 0x14  //0x14=20行
-DEFINE board_col_size 0xA   //0xA=10行
+DEFINE board_col_size 0xA   //0xA=10列
 DEFINE board_size 0xc8     //0xc8=20*10=200个格子
 DEFINE graph 0xC000         /从0XC000处开始存储graph每个格子的状态
 DEFINE now_state 0xD000     //从0XD000处开始存储状态->到格子状态的映射
@@ -25,6 +25,7 @@ INIT:
 
     CALL clear_screen
     CALL init_state
+    LI R3 0
     CALL get_new_block  //新生成一个块作为当前块, R1存储左上角光标位置, R2存储列号, R3存储当前状态号
     CALL add_fake_line
 
@@ -34,29 +35,35 @@ MAINLOOP:
     SW_SP R4 0     //此处压栈了一个循环变量，记住，根据之后的情况调整栈帧的大小
 CHECKKEYBOARD:
     CALL update_view      //更新视图
+    CALL delay_40W       //延时20W条指令
 
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 80
-    SW R5 R1 4
-    SW R5 R6 5
+    CALL get_keyboard     //获取键盘按下的值
 
+    CMPI R0 10            //判断是否是ESC
+    BTEQZ QUIT
+    NOP
+
+    CMPI R0 11            //判断是否是上键
+    BTEQZ HANDLEROTATE
+    NOP
+
+    CMPI R0 13            //判断是否是下键
+    BTEQZ HANDLEDOWNTO
+    NOP
+
+    CMPI R0 12            //判断是否是左键
+    BTEQZ HANDLELSHIFT
+    NOP
+
+    CMPI R0 14            //判断是否是右键
+    BTEQZ HANDLERSHIFT
+    NOP
 
     LW_SP R4 0
     ADDIU R4 FF
     SW_SP R4 0
-
-    CALL delay_320W       //延时100W条指令
-
-    B AUTOUPDATE
+    BEQZ R4 AUTOUPDATE
     NOP
-    
-
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 80
-    SW R5 R6 4
-    SW R5 R6 5
 
     B CHECKKEYBOARD
     NOP

@@ -11,11 +11,7 @@ freefall:
     //TODO:尝试自由下落一行，然后判断合法性，可以的话返回1，不行的话返回0，并将当前数据写入graph，同时要判断能否消行
     CALL clear_block    
 
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 85
-    SW R5 R6 4
-    SW R5 R6 5
+
 
 
     LI R4 board_col_size

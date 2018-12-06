@@ -22,11 +22,9 @@ write_block:
         LI R1 1
         AND R1 R4       //R1代表当前格子有没有
         SRL R4 R4 1
-        LI R2 0 
-        BEQZ R1 write_to_graph  //没有的话直接就写0了
+        BEQZ R1 prepare_for_next_write  //没有的话直接就写0了
         NOP
         LI R2 moving_block  //否则写moving_block
-        write_to_graph: 
         SW R6 R2 0      //R6是该格子对应在graph里的位置  
         
         prepare_for_next_write:
