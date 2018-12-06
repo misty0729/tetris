@@ -33,6 +33,6 @@ FALLFAILED:
     LI R4 board_col_size    
     SUBU R1 R4 R1           //恢复
     CALL write_block
-   // CALL check_get_point    //停下来了所以要判断能否消行
+    CALL check_get_point    //停下来了所以要判断能否消行
     LI R0 0
     RETURN          
