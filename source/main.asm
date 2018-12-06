@@ -1,6 +1,7 @@
 DEFINE board_row_size 0x14  //0x14=20行
 DEFINE board_col_size 0xA   //0xA=10列
 DEFINE board_size 0xc8     //0xc8=20*10=200个格子
+DEFINE board_start 0x10E
 DEFINE graph 0xC000         /从0XC000处开始存储graph每个格子的状态
 DEFINE now_state 0xD000     //从0XD000处开始存储状态->到格子状态的映射
 DEFINE next_state 0xE000    //从0XE000处开始存储状态->下一个状态的映射

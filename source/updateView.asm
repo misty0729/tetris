@@ -10,7 +10,7 @@ update_view:
     ADDSP FF        
     SW_SP R3 0
 
-    LI R3 0     //R3存储对应的屏幕位置（VGA用）
+    LI R3 board_start     //R3存储对应的屏幕位置（VGA用）
     LI R4 board_size     //R4是计数器，为0时跳出
     LI R5 board_col_size     //R5是第二层计数器
     LI R6 graph //R6存储当前的格子在graph里的地址

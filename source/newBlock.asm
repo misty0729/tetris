@@ -9,7 +9,19 @@ get_new_block:
     NOP
     CALL write_block    //新出现的方块要画出来
     RETURN
+
 game_over:
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 2
+    SLL R6 R6 0
+    ADDIU R6 1c
+    SW R5 R6 4
+    LI R6 81
+    SW R5 R6 5
+
+
     LI R5 BF                        // G
     SLL R5 R5 0
     LI R6 F4

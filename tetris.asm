@@ -43,7 +43,7 @@ NOP
 NOP
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 e3
+ADDIU R6 21
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -114,7 +114,7 @@ NOP
     ADDSP 1
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 20
+ADDIU R6 5f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -148,7 +148,7 @@ NOP
 NOP
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 20
+ADDIU R6 5f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -179,7 +179,7 @@ NOP
 NOP
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 20
+ADDIU R6 5f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -284,9 +284,9 @@ LI R4 0
 SLL R4 R4 0
 ADDIU R4 a
 NOP
-LI R5 9b
+LI R5 e1
 SLL R5 R5 0
-ADDIU R5 9b
+ADDIU R5 e1
         SW R6 R5 0
         ADDIU R4 FF
         BEQZ R4 4
@@ -543,7 +543,7 @@ NOP
 NOP
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 e3
+ADDIU R6 21
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -764,7 +764,7 @@ NOP
     NOP
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 20
+ADDIU R6 5f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -786,7 +786,7 @@ ADDIU R4 a
     SUBU R1 R4 R1           
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 20
+ADDIU R6 5f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -983,9 +983,18 @@ NOP
     LI R1 3 
     LI R2 3
     LI R3 4
+LI R6 41
+SLL R6 R6 0
+ADDIU R6 7a
+MFPC R7
+ADDIU R7 3
+JR R6
+NOP
+    BEQZ R0 c
+    NOP
 LI R6 44
 SLL R6 R6 0
-ADDIU R6 20
+ADDIU R6 5f
 MFPC R7
 ADDIU R7 3
 JR R6
@@ -995,6 +1004,58 @@ ADDSP 1
 JR R7
 NOP
 NOP
+    LI R5 BF                        
+    SLL R5 R5 0
+    LI R6 2
+    SLL R6 R6 0
+    ADDIU R6 1c
+    SW R5 R6 4
+    LI R6 81
+    SW R5 R6 5
+    LI R5 BF                        
+    SLL R5 R5 0
+    LI R6 F4
+    SW R5 R6 4
+    LI R6 47
+    SW R5 R6 5
+    LI R6 F5                        
+    SW R5 R6 4
+    LI R6 41
+    SW R5 R6 5
+    LI R6 F6                        
+    SW R5 R6 4
+    LI R6 4D
+    SW R5 R6 5
+    LI R6 F7                        
+    SW R5 R6 4
+    LI R6 45
+    SW R5 R6 5
+    LI R6 1                       
+    SLL R6 R6 0
+    ADDIU R6 44
+    SW R5 R6 4
+    LI R6 4F
+    SW R5 R6 5
+    LI R6 1                       
+    SLL R6 R6 0
+    ADDIU R6 45
+    SW R5 R6 4
+    LI R6 56
+    SW R5 R6 5
+    LI R6 1                       
+    SLL R6 R6 0
+    ADDIU R6 46
+    SW R5 R6 4
+    LI R6 45
+    SW R5 R6 5
+    LI R6 1                       
+    SLL R6 R6 0
+    ADDIU R6 47
+    SW R5 R6 4
+    LI R6 52
+    SW R5 R6 5
+    B 4d6
+    NOPNOP
     ADDSP FF
     SW_SP R7 0
     ADDSP FF        
@@ -1003,11 +1064,12 @@ NOP
     SW_SP R2 0
     ADDSP FF        
     SW_SP R3 0
-    LI R3 0     
+LI R3 1
+SLL R3 R3 0
+ADDIU R3 e
 LI R4 1
 SLL R4 R4 0
 ADDIU R4 c8
-    ADDIU R4 A
 LI R5 0
 SLL R5 R5 0
 ADDIU R5 a
@@ -1086,9 +1148,9 @@ NOP
         SRL R4 R4 1
         BEQZ R1 5  
         NOP
-LI R2 b1
+LI R2 9b
 SLL R2 R2 0
-ADDIU R2 b1
+ADDIU R2 9b
         SW R6 R2 0      
 NOP
             ADDIU R5 FF
