@@ -13,7 +13,7 @@ check_get_point:
     LI R6 graph             //R6还是当前格子信息的存储位置
     check_line_loop:
         LI R4 board_col_size
-        LI R2 1             //R2来标记这一行是不是满的，初值为是
+        LI R2 1             //R2来标记这一行是不是满的，初值为1
         loop_in_this_line:
             LW R6 R1 0      //用R1把格子信息取出来
             BNEZ R1 prepare_for_next_square
@@ -22,7 +22,7 @@ check_get_point:
             prepare_for_next_square:
                 ADDIU R4 FF
                 ADDIU R6 1
-                BEQZ R4 loop_in_this_line
+                BNEZ R4 loop_in_this_line
                 NOP
         BNEZ R2 get_point
         NOP
@@ -45,8 +45,9 @@ RET:
     RETURN
 
 get_point://思路是从R6倒着消到第一个
+
     MOVE R5 R6 
-    ADDIU R5 FA //让R5是R6上一行对应的格子（TODO:边界问题即最上面一行怎么办）
+    ADDIU R5 F6 //让R5是R6上一行对应的格子（TODO:边界问题即最上面一行怎么办）
     LI R2 graph
     SUBU R6 R2 R2
     ADDIU R2 1  //R2是计数器，表示要消的格子个数

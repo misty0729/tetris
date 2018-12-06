@@ -52,12 +52,6 @@ check_valid:
 
 VALID:
 
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 90
-    SW R5 R6 4
-    SW R5 R6 5
-
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1
     LW_SP R2 0  
@@ -67,12 +61,6 @@ VALID:
     LI R0 1
     RETURN
 NOTVALID:
-
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 91
-    SW R5 R6 4
-    SW R5 R6 5
 
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1
