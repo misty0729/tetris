@@ -38,7 +38,7 @@ add_fake_line:
     last_loop_end:
 
     LI R3 board_start     //R3存储对应的屏幕位置（VGA用）
-    ADDIU R3 AF
+    ADDIU R3 AE
     LI R5 board_col_size
     ADDIU R5 2
     upper_boarder_loop:
@@ -63,6 +63,95 @@ add_fake_line:
         ADDIU R5 FF
         BNEZ R5 upper_boarder_loop
         NOP
+
+    LI R3 board_start     //R3存储对应的屏幕位置（VGA用）
+    ADDIU R3 AE
+    LI R5 tat
+    ADDU R5 R3 R3
+    LI R5 board_col_size
+    ADDIU R5 2
+    lower_boarder_loop:
+        LI R0 static_block//把格子图像load到R0里面
+        MOVE R1 R0  //显示左半边
+        SRL R0 R0 0 
+        LI R2 FF
+        AND R2 R1
+        LI R1 BF
+        SLL R1 R1 0 
+        SW R1 R3 4
+        SW R1 R2 5
+        ADDIU R3 1
+        LI R2 FF    //显示右半边
+        AND R2 R0
+        LI R1 BF
+        SLL R1 R1 0 
+        SW R1 R3 4
+        SW R1 R2 5
+        ADDIU R3 1
+
+        ADDIU R5 FF
+        BNEZ R5 lower_boarder_loop
+        NOP
+
+    LI R3 board_start     //R3存储对应的屏幕位置（VGA用）
+    ADDIU R3 AE
+    LI R5 board_row_size
+    ADDIU R5 2
+    left_boarder_loop:
+        LI R0 static_block//把格子图像load到R0里面
+        MOVE R1 R0  //显示左半边
+        SRL R0 R0 0 
+        LI R2 FF
+        AND R2 R1
+        LI R1 BF
+        SLL R1 R1 0 
+        SW R1 R3 4
+        SW R1 R2 5
+        ADDIU R3 1
+        LI R2 FF    //显示右半边
+        AND R2 R0
+        LI R1 BF
+        SLL R1 R1 0 
+        SW R1 R3 4
+        SW R1 R2 5
+        ADDIU R3 1
+
+        ADDIU R3 4E
+
+        ADDIU R5 FF
+        BNEZ R5 left_boarder_loop
+        NOP
+
+    LI R3 board_start     //R3存储对应的屏幕位置（VGA用）
+    ADDIU R3 AE
+    ADDIU R3 16
+    LI R5 board_row_size
+    ADDIU R5 2
+    right_boarder_loop:
+        LI R0 static_block//把格子图像load到R0里面
+        MOVE R1 R0  //显示左半边
+        SRL R0 R0 0 
+        LI R2 FF
+        AND R2 R1
+        LI R1 BF
+        SLL R1 R1 0 
+        SW R1 R3 4
+        SW R1 R2 5
+        ADDIU R3 1
+        LI R2 FF    //显示右半边
+        AND R2 R0
+        LI R1 BF
+        SLL R1 R1 0 
+        SW R1 R3 4
+        SW R1 R2 5
+        ADDIU R3 1
+
+        ADDIU R3 4E
+
+        ADDIU R5 FF
+        BNEZ R5 right_boarder_loop
+        NOP
+
 
     LW_SP R3 0  //把R1 R2 R3取回来
     ADDSP 1

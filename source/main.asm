@@ -11,7 +11,8 @@ DEFINE moving_right 0xB1    //正在移动中的方块的右半部分
 DEFINE moving_block 0x9A9B  //正在移动中的Image
 DEFINE static_left 0x82     //静止的方块的左半部分
 DEFINE static_right 0x83    //静止的方块的右半部分
-DEFINE static_block 0xE0E1  //静止的方块的Image
+DEFINE static_block 0xE1E0  //静止的方块的Image
+DEFINE tat  0x0690
 //约定
 //R1 R2 R3作为全局变量来使用，含义下面有，其他函数尽量不使用这三个寄存器
 //R0作为函数返回值使用
