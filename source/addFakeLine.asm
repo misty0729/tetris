@@ -2,7 +2,7 @@ add_fake_line:
     ADDSP FF
     SW_SP R7 0
     LI R6 graph
-    ADDIU R6 FA 
+    ADDIU R6 F6 
     LI R4 board_col_size
     first_loop:             //把棋盘前一行的全部置0
         LI R5 0             

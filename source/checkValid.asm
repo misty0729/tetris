@@ -11,9 +11,7 @@ check_valid:
     ADDSP FF        
     SW_SP R3 0
 
-    B VALID
-    NOP
-    
+
     LI R5 BF                        // DEBUG
     SLL R5 R5 0
     LI R6 93

@@ -46,5 +46,4 @@ write_block:
     ADDSP 1
     LW_SP R1 0  
     ADDSP 1
-    LI R0 1
     RETURN

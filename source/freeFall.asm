@@ -25,7 +25,7 @@ freefall:
     NOP
     CALL write_block        //成功则绘制，返回1，结束
 
-    LI R5 BF                        // DEBUG
+    LI R5 BF                // DEBUG
     SLL R5 R5 0
     LI R6 86
     SW R5 R6 4

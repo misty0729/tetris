@@ -26,18 +26,31 @@ INIT:
     CALL clear_screen
     CALL init_state
     CALL get_new_block  //新生成一个块作为当前块, R1存储左上角光标位置, R2存储列号, R3存储当前状态号
+    CALL add_fake_line
+
 MAINLOOP:
     LI R4 8             
     ADDSP FF
     SW_SP R4 0     //此处压栈了一个循环变量，记住，根据之后的情况调整栈帧的大小
 CHECKKEYBOARD:
     CALL update_view      //更新视图
+
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 80
+    SW R5 R1 4
+    SW R5 R6 5
+
+
     LW_SP R4 0
     ADDIU R4 FF
     SW_SP R4 0
+
+    CALL delay_320W       //延时100W条指令
+
     B AUTOUPDATE
     NOP
-    CALL delay_2560W       //延时100W条指令
+    
 
     LI R5 BF                        // DEBUG
     SLL R5 R5 0
@@ -123,7 +136,17 @@ AUTOUPDATE:             //固定时间自动更新
     BNEZ R0 FREEFALLSUCCESS            //自由下落返回值为成功与否
     NOP
     CALL get_new_block
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 99
+    SW R5 R6 4
+    SW R5 R6 5
 FREEFALLSUCCESS:
+    LI R5 BF                        // DEBUG
+    SLL R5 R5 0
+    LI R6 9A
+    SW R5 R6 4
+    SW R5 R6 5
     B MAINLOOP
     NOP
 QUIT:
