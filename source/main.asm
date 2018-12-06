@@ -124,34 +124,13 @@ HANDLEDOWNTO:           //处理下方向键的直接落下
     NOP
 AUTOUPDATE:             //固定时间自动更新
 
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 81
-    SW R5 R6 4
-    SW R5 R6 5
-
     CALL freefall       //调用自由下落
-
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 82
-    SW R5 R6 4
-    SW R5 R6 5
 
     BNEZ R0 FREEFALLSUCCESS            //自由下落返回值为成功与否
     NOP
     CALL get_new_block
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 99
-    SW R5 R6 4
-    SW R5 R6 5
 FREEFALLSUCCESS:
-    LI R5 BF                        // DEBUG
-    SLL R5 R5 0
-    LI R6 9A
-    SW R5 R6 4
-    SW R5 R6 5
+
     B MAINLOOP
     NOP
 QUIT:
