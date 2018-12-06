@@ -12,50 +12,42 @@ get_new_block:
 game_over:
     LI R5 BF                        // G
     SLL R5 R5 0
-    LI R6 F4
+    LI R6 26
     SW R5 R6 4
     LI R6 47
     SW R5 R6 5
 
-    LI R6 F5                        //A
+    LI R6 27                        //A
     SW R5 R6 4
     LI R6 41
     SW R5 R6 5
 
-    LI R6 F6                        //M
+    LI R6 28                        //M
     SW R5 R6 4
     LI R6 4D
     SW R5 R6 5
 
-    LI R6 F7                        //E
+    LI R6 29                        //E
     SW R5 R6 4
     LI R6 45
     SW R5 R6 5
 
-    LI R6 1                       //O
-    SLL R6 R6 0
-    ADDIU R6 44
+    LI R6 76                       //O
     SW R5 R6 4
     LI R6 4F
     SW R5 R6 5
 
-    LI R6 1                       //V
-    SLL R6 R6 0
-    ADDIU R6 45
+    LI R6 77                       //V
     SW R5 R6 4
     LI R6 56
     SW R5 R6 5
 
-    LI R6 1                       //E
-    SLL R6 R6 0
-    ADDIU R6 46
+    LI R6 78                       //E
     SW R5 R6 4
     LI R6 45
     SW R5 R6 5
 
-    LI R6 1                       //R
-    SLL R6 R6 0
-    ADDIU R6 47
+    LI R6 79                       //R
     SW R5 R6 4
     LI R6 52
     SW R5 R6 5
